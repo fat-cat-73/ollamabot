@@ -26,7 +26,7 @@ allows it to carry on a conversation as opposed to it being a "new" chat every t
 
 ## Setup
 - ## If you want to use a specific version/path of Python
-    Edit both the **setup.bat** and **run.bat** to include the correct path to your Python version. If tye areleft as 'set python=<u>python</u>' it will use the Python version in your system/local path. It will create a virtualenv (venv) within the folder after running setup.bat.
+    Edit both the **setup.bat** and **run.bat** to include the correct path to your Python version. If they are left as 'set python=<u>python</u>' it will use the Python version in your system/local path. It will create a virtualenv (venv) within the folder after running setup.bat.
 
 - ## Edit the **run.bat** file to include:
 
