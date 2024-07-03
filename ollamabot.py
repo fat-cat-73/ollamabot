@@ -55,26 +55,31 @@ def get_ollama_response(prompt):
 # Currently set to 50 pairs for context but can be changed below
 def read_log_file(max_context=50):
     context_messages = []
-    with open(LOG_FILE, 'r') as log:
+    if not os.path.exists(LOG_FILE):
+        return context_messages
+    
+    with open(LOG_FILE, 'r', encoding='utf-8') as log:
         lines = log.readlines()
-        
+
         # Limit the number of context pairs to max_context
         start_index = max(0, len(lines) - 2 * max_context)
         
         for i in range(start_index, len(lines), 2):
             if i + 1 < len(lines):
-                if len(lines[i].strip().split('] ')) > 1 and len(lines[i+1].strip().split('] ')) > 1:
+                try:
                     user_prompt = lines[i].strip().split('] ')[1].split(': ')[1]
                     assistant_response = lines[i+1].strip().split('] ')[1].split(': ')[1]
                     context_messages.append({"role": "user", "content": user_prompt})
                     context_messages.append({"role": "assistant", "content": assistant_response})
-    
+                except (IndexError, ValueError) as e:
+                    continue  # Skip malformed entries
+
     return context_messages[-2 * max_context:]  # Return only the last max_context pairs
 
 # Log interactions to file
 def log_interaction(prompt, response):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(LOG_FILE, 'a') as log:
+    with open(LOG_FILE, 'a', encoding='utf-8') as log:
         log.write(f"[{timestamp}] User: {prompt}\n")
         log.write(f"[{timestamp}] Assistant: {response}\n\n")
 
