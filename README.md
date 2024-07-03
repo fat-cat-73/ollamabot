@@ -45,16 +45,16 @@ allows it to carry on a conversation as opposed to it being a "new" chat every t
 ## Usage
 
 - ### Execute the **run.bat** file
-    >[!TIP]
-    >You do not need to start your Ollama application as the **start.bat** file will open it automatically
+>[!TIP]
+>You do not need to start your Ollama application as the **start.bat** file will open it automatically
 - ### Have fun chatting with your new Ollama bot!
 
 ## Notes
 
 - ### Logging file
     The chatlog.txt file will populate with both the **'user'** (prompt) and **'assistant'** (Ollama response) as pairs. This means every prompt sent by a user will also send the last 50 messages to Ollama as "context" to allow you to carry on conversations with the bot, as opposed to it treating every prompt as a new conversation (no memory/history retention).
-    > [!TIP] 
-    > You will probably want to clear the contents of this file periodically as it does not do it automatically!
+> [!TIP] 
+> You will probably want to clear the contents of this file periodically as it does not do it automatically!
 
 - ### Ollama Models
     It is not necessary to download the model you want to use prior to starting the bot, you just need to set it in the **run.bat** file. When the line
